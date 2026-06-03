@@ -24,7 +24,7 @@ export const AppointmentsProvider = ({ children }: PropsWithChildren) => {
 
   function removeAppointment(appointmentRemove: string) {
     const remove = appointments.filter(
-      (appointment) => appointment.id !== appointmentRemove,
+      (appointment) => appointment.clientName !== appointmentRemove,
     );
     setAppointment(remove);
   }

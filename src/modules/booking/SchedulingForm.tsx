@@ -1,5 +1,4 @@
 "use client";
-import Appointments from "@/context/AppointmentsContext";
 import useScheduling from "@/app/hooks/useScheduling";
 import ClientInput from "./ClientInput";
 import DatePicker from "./DatePicker";
@@ -20,15 +19,27 @@ const SchedulingForm = () => {
     setSubmitted,
   } = useScheduling();
 
-  const { bookAppointment } = Appointments();
-
-  function handleSubmit() {
+  async function handleSubmit() {
     setSubmitted(true);
     if (!isValid) return;
 
     const newAppointment = buildAppointment();
-    bookAppointment(newAppointment);
-    reset();
+    const booking = await fetch("/api/appointments", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newAppointment),
+    });
+    const data = await booking.json();
+    console.log("status:", booking.status);
+    console.log("ok:", booking.ok);
+    console.log("resposta:", data);
+    if (!booking.ok) {
+      throw new Error(data.error || "Erro ao fazer agendamento");
+    } else {
+      reset();
+    }
   }
 
   return (

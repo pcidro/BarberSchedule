@@ -34,7 +34,6 @@ const useScheduling = () => {
 
   function buildAppointment() {
     const newAppointment: Appointment = {
-      id: crypto.randomUUID(),
       clientName,
       time: hourSelected!,
       date: dateSelected!,
