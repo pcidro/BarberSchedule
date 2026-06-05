@@ -23,7 +23,7 @@ const ScheduleCard = ({
         className="cursor-pointer"
         onClick={() => removeAppointment(appointmentId)}
       >
-        <Image src="/assets/delete.svg" alt="Ícone" width={40} height={40} />;
+        <Image src="/svg/delete.svg" alt="Ícone" width={20} height={20} />
       </button>
     </div>
   );

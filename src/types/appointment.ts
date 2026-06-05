@@ -1,8 +1,16 @@
 export type Period = "morning" | "afternoon" | "evening";
 
-export interface Appointment {
+export type CreateAppointment = {
+  clientName: string;
   date: string;
   time: string;
-  clientName: string;
   period: Period;
-}
+};
+
+export type Appointment = {
+  id: string;
+  clientName: string;
+  date: string;
+  time: string;
+  createdAt: string;
+};

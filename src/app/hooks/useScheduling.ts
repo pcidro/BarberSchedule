@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import type { Appointment, Period } from "@/types/appointment";
+import type { CreateAppointment, Period } from "@/types/appointment";
 import { TIME_SLOTS } from "../utils/TimeSlots";
 
 const useScheduling = () => {
@@ -33,7 +33,7 @@ const useScheduling = () => {
   }
 
   function buildAppointment() {
-    const newAppointment: Appointment = {
+    const newAppointment: CreateAppointment = {
       clientName,
       time: hourSelected!,
       date: dateSelected!,

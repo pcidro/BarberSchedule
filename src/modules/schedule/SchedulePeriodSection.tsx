@@ -34,6 +34,8 @@ const SchedulePeriodSection = ({
     },
   ];
 
+  console.log(morningAppointments);
+
   return (
     <ul className="flex flex-col gap-6">
       {PERIODS.map(({ label, range, icon, appointments }) => (

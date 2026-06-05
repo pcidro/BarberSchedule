@@ -4,9 +4,9 @@ import React, { useState, type PropsWithChildren } from "react";
 import type { Appointment } from "@/types/appointment";
 
 interface iAppointmentContext {
-  bookAppointment: (appointment: Appointment) => void;
   removeAppointment: (appointment: string) => void;
   appointments: Appointment[];
+  setAppointments: React.Dispatch<React.SetStateAction<Appointment[]>>;
 }
 
 const AppointmentsContext = React.createContext<iAppointmentContext | null>(
@@ -20,24 +20,35 @@ export const Appointments = () => {
 };
 
 export const AppointmentsProvider = ({ children }: PropsWithChildren) => {
-  const [appointments, setAppointment] = useState<Appointment[]>([]);
+  const [appointments, setAppointments] = useState<Appointment[]>([]);
 
-  function removeAppointment(appointmentRemove: string) {
-    const remove = appointments.filter(
-      (appointment) => appointment.clientName !== appointmentRemove,
-    );
-    setAppointment(remove);
-  }
+  async function removeAppointment(id: string) {
+    try {
+      const response = await fetch(`/api/appointments/${id}`, {
+        method: "DELETE",
+      });
 
-  function bookAppointment(newAppointment: Appointment) {
-    setAppointment((prev) => [...prev, newAppointment]);
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error);
+      }
+
+      setAppointments((prev) =>
+        prev.filter((appointment) => appointment.id !== id),
+      );
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log(error.message);
+      }
+    }
   }
 
   return (
     <AppointmentsContext.Provider
       value={{
         appointments,
-        bookAppointment,
+        setAppointments,
         removeAppointment,
       }}
     >
