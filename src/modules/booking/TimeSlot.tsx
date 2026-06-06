@@ -1,7 +1,7 @@
 "use client";
 import { useEffect } from "react";
-import { TIME_SLOTS } from "@/app/utils/TimeSlots";
-import isTimeSlotPast from "@/app/utils/isTimeSlotPast";
+import { TIME_SLOTS } from "@/utils/TimeSlots";
+import isTimeSlotPast from "@/utils/isTimeSlotPast";
 import Appointments from "@/context/AppointmentsContext";
 
 interface iPropsTimeSlot {

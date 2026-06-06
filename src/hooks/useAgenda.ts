@@ -1,9 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
 import Appointments from "@/context/AppointmentsContext";
-import TransformDataToDateInputValue from "../utils/TransformDataToString";
+import TransformDataToDateInputValue from "@/utils/TransformDataToString";
 import { Period } from "@/types/appointment";
-import { TIME_SLOTS } from "../utils/TimeSlots";
+import { TIME_SLOTS } from "@/utils/TimeSlots";
 
 const useAgenda = () => {
   function getPeriod(hourSelected: string): Period {

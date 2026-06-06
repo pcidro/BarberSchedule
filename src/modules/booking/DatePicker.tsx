@@ -1,4 +1,4 @@
-import { DatePickerLimit } from "@/app/utils/DatePickerLimit";
+import { DatePickerLimit } from "@/utils/DatePickerLimit";
 
 interface IPropsDatePicker {
   value: string | null;

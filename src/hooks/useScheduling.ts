@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import type { CreateAppointment, Period } from "@/types/appointment";
-import { TIME_SLOTS } from "../utils/TimeSlots";
+import { TIME_SLOTS } from "@/utils/TimeSlots";
 
 const useScheduling = () => {
   const [clientName, setClientName] = useState("");

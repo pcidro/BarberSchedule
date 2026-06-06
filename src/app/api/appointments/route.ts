@@ -1,5 +1,5 @@
-import { prisma } from "@/app/lib/prisma";
-import { getEndDay, getStartDay } from "@/app/utils/GetStartAndFinishDay";
+import { prisma } from "@/lib/prisma";
+import { getEndDay, getStartDay } from "@/utils/GetStartAndFinishDay";
 import { NextRequest } from "next/server";
 
 export async function GET(request: NextRequest) {

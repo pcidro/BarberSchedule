@@ -1,5 +1,5 @@
 "use client";
-import useScheduling from "@/app/hooks/useScheduling";
+import useScheduling from "@/hooks/useScheduling";
 import ClientInput from "./ClientInput";
 import DatePicker from "./DatePicker";
 import TimeSlot from "./TimeSlot";

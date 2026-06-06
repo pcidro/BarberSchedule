@@ -1,5 +1,5 @@
 "use client";
-import useAgenda from "@/app/hooks/useAgenda";
+import useAgenda from "@/hooks/useAgenda";
 import ScheduleDateSelector from "./ScheduleDateSelector";
 import SchedulePeriodSection from "./SchedulePeriodSection";
 
