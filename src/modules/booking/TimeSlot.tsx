@@ -11,6 +11,10 @@ interface iPropsTimeSlot {
   error: string | undefined;
 }
 
+const formatDate = (dateString: string) => {
+  return dateString.split("T")[0];
+};
+
 const sections = [
   { title: "Manhã", data: TIME_SLOTS.morning },
   { title: "Tarde", data: TIME_SLOTS.afternoon },
@@ -34,7 +38,19 @@ const TimeSlot = ({
     }
   }, [selectedDate, selectedHour, setSelectedHour]);
 
-  const { appointments } = Appointments();
+  const { appointments, setAppointments } = Appointments();
+
+  useEffect(() => {
+    if (!selectedDate) return;
+
+    async function loadAppointments() {
+      const response = await fetch(`/api/appointments?date=${selectedDate}`);
+      const data = await response.json();
+      setAppointments(data);
+    }
+
+    loadAppointments();
+  }, [selectedDate, setAppointments]);
 
   return (
     <div className="mb-8">
@@ -61,7 +77,7 @@ const TimeSlot = ({
                 }
                 const isBooked = appointments.some(
                   (appointment) =>
-                    appointment.date === selectedDate &&
+                    formatDate(appointment.date) === selectedDate &&
                     appointment.time === time,
                 );
                 const isDisabled = isPast || isBooked;
@@ -72,14 +88,15 @@ const TimeSlot = ({
                     onClick={() => setSelectedHour(time)}
                     type="button"
                     className={`
-        py-2.5 rounded-lg text-sm font-medium transition-all cursor-pointer active:scale-95 border
-        ${
-          isSelected
-            ? "bg-purple-600 border-purple-400 text-white"
-            : "bg-zinc-800/50 border-zinc-700 text-zinc-300 hover:border-purple-500 hover:text-purple-400 hover:bg-zinc-800"
-        }
-        ${isDisabled ? "opacity-50 cursor-not-allowed" : ""}
-      `}
+    py-2.5 rounded-lg text-sm font-medium transition-all border
+    ${
+      isDisabled
+        ? "bg-zinc-900 border-zinc-800 text-zinc-600 opacity-50 cursor-not-allowed pointer-events-none line-through"
+        : isSelected
+          ? "bg-purple-600 border-purple-400 text-white cursor-pointer active:scale-95"
+          : "bg-zinc-800/50 border-zinc-700 text-zinc-300 hover:border-purple-500 hover:text-purple-400 hover:bg-zinc-800 cursor-pointer active:scale-95"
+    }
+  `}
                   >
                     {time}
                   </button>

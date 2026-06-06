@@ -19,6 +19,8 @@ const SchedulingForm = () => {
     setSubmitted,
   } = useScheduling();
 
+  console.log("dateSelected no form:", dateSelected);
+
   async function handleSubmit() {
     setSubmitted(true);
     if (!isValid) return;
@@ -32,9 +34,6 @@ const SchedulingForm = () => {
       body: JSON.stringify(newAppointment),
     });
     const data = await booking.json();
-    console.log("status:", booking.status);
-    console.log("ok:", booking.ok);
-    console.log("resposta:", data);
     if (!booking.ok) {
       throw new Error(data.error || "Erro ao fazer agendamento");
     } else {
