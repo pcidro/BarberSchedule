@@ -2,6 +2,8 @@
 
 O Barber Schedule é um sistema de agendamento para barbearias desenvolvido com Next.js. A aplicação oferece uma experiência simples e intuitiva para organizar atendimentos por data e horário, agora com persistência em banco de dados e comunicação com APIs internas criadas com Route Handlers do Next.js.
 
+### 🔗 [Deploy do projeto](https://barberschedule-wine.vercel.app/)
+
 ## Sobre o projeto
 
 O projeto foca na gestão de horários de uma barbearia, permitindo selecionar data, horário e nome do cliente. Os agendamentos são organizados automaticamente entre Manhã, Tarde e Noite, sendo exibidos na interface conforme a data selecionada.
