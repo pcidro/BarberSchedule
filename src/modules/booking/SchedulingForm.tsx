@@ -1,5 +1,6 @@
 "use client";
 import useScheduling from "@/hooks/useScheduling";
+import toast from "react-hot-toast";
 import ClientInput from "./ClientInput";
 import DatePicker from "./DatePicker";
 import TimeSlot from "./TimeSlot";
@@ -38,6 +39,7 @@ const SchedulingForm = () => {
       throw new Error(data.error || "Erro ao fazer agendamento");
     } else {
       reset();
+      toast.success("Agendamento realizado com sucesso!");
     }
   }
 

@@ -29,9 +29,9 @@ export default function RootLayout({
       lang="pt-BR"
       className={`${inter.variable} ${roboto.variable} h-full antialiased`}
     >
-      <AppointmentsProvider>
-        <body>{children}</body>
-      </AppointmentsProvider>
+      <body>
+        <AppointmentsProvider>{children}</AppointmentsProvider>
+      </body>
     </html>
   );
 }

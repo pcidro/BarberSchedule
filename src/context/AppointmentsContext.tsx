@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, type PropsWithChildren } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import type { Appointment } from "@/types/appointment";
 
 interface iAppointmentContext {
@@ -37,6 +38,7 @@ export const AppointmentsProvider = ({ children }: PropsWithChildren) => {
       setAppointments((prev) =>
         prev.filter((appointment) => appointment.id !== id),
       );
+      toast.error("Agendamento removido com sucesso!");
     } catch (error) {
       if (error instanceof Error) {
         console.log(error.message);
@@ -53,6 +55,7 @@ export const AppointmentsProvider = ({ children }: PropsWithChildren) => {
       }}
     >
       {children}
+      <Toaster position="top-right" />
     </AppointmentsContext.Provider>
   );
 };
